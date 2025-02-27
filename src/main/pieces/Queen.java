@@ -6,15 +6,13 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean isValidMove(int startRow, int startCol, int endRow, int endCol) {
-        int rowDiff = Math.abs(endRow - startRow);
-        int colDiff = Math.abs(endCol - startCol);
-        
-        return (startRow == endRow || startCol == endCol) || (rowDiff == colDiff);
+    public String getSymbol() {
+        return isWhite ? "Q" : "q";  // White queen 'Q', Black queen 'q'
     }
 
     @Override
-    public String toString() {
-        return isWhite() ? "♕" : "♛";
+    public boolean isValidMove(int startX, int startY, int endX, int endY) {
+        // Queen moves like a bishop (diagonally) or like a rook (straight)
+        return (startX == endX || startY == endY) || (Math.abs(startX - endX) == Math.abs(startY - endY));
     }
 }
